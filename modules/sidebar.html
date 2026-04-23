@@ -1,0 +1,33 @@
+<main class="flex flex-1 overflow-hidden relative w-full">
+        <aside id="sidebar"
+            class="absolute lg:relative lg:translate-x-0 -translate-x-full w-72 lg:w-80 h-full bg-white/95 dark:bg-[#212121]/95 backdrop-blur-xl border-r border-gray-200 dark:border-[#333333] z-40 flex flex-col transition-transform duration-300 ease-in-out shadow-2xl lg:shadow-none">
+            <div
+                class="md:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-[#333333] shrink-0 bg-gray-50 dark:bg-[#1a1a1a]">
+                <a href="https://sid0sid-ops.github.io/BioAlign-Pro-Homepage/"
+                    class="flex items-center justify-center gap-2 px-3 py-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors bg-gray-200 dark:bg-[#2a2a2a] rounded-md flex-1 mr-2">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+                <a href="https://sid0sid-ops.github.io/BioAlign-Pro-Contact/"
+                    class="flex items-center justify-center gap-2 px-3 py-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors bg-gray-200 dark:bg-[#2a2a2a] rounded-md flex-1">
+                    <i class="fa-solid fa-envelope"></i> Contact
+                </a>
+            </div>
+            <div class="p-4 border-b border-gray-200 dark:border-[#333333] shrink-0">
+                <div class="relative group">
+                    <i
+                        class="fa-solid fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors pointer-events-none"></i>
+                    <input type="text" id="searchInput" placeholder="Search concept or filename..."
+                        class="w-full bg-gray-100 dark:bg-black/40 border border-transparent dark:border-white/5 text-gray-800 dark:text-white rounded-lg pl-10 pr-9 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-gray-500 shadow-inner">
+                    <button id="clearSearch"
+                        class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-white focus:outline-none"
+                        aria-label="Clear Search">
+                        <i class="fa-solid fa-times text-xs"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar p-2" id="sidebarContent"></div>
+        </aside>
+
+        <div id="sidebarOverlay"
+            class="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 hidden transition-opacity opacity-0 lg:hidden cursor-pointer">
+        </div>
