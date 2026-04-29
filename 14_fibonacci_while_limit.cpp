@@ -1,15 +1,10 @@
-// W.A.P. to display Fibonacci series under number 10 using while loop
+// W.A.P. to demo Value Boundaries
 /*
-Algorithm:
-Step 1: Start
-Step 2: Initialize a=0, b=1
-Step 3: While a < 10: print a, next=a+b, a=b, b=next
-Step 4: End
-
 Program Name: Fibonacci Under 10 (while)
-Description: Generates and displays all Fibonacci numbers whose value is strictly less than 10 using a while loop.
-Concepts Used: while loops, conditional boundaries
+Description: Generates all Fibonacci numbers strictly less than 10 using a while loop.
+Concepts Used: Value Boundaries
 */
+
 #include <iostream>
 using namespace std;
 

@@ -1,15 +1,10 @@
-// W.A.P. to define Student class and object
+// W.A.P. to demo Classes and Objects
 /*
-Algorithm:
-Step 1: Start
-Step 2: Class Student with name, roll
-Step 3: Create obj, populate, print
-Step 4: End
-
-Program Name: Basic Class
-Description: First OOP program
-Concepts Used: OOP, Classes, Objects
+Program Name: Student class
+Description: Defining a class blueprint with attributes and methods, instantiating objects.
+Concepts Used: Classes and Objects
 */
+
 #include <iostream>
 #include <string>
 using namespace std;

@@ -1,15 +1,10 @@
-// W.A.P. to display first 10 terms of Fibonacci series using while loop
+// W.A.P. to demo While Loops
 /*
-Algorithm:
-Step 1: Start
-Step 2: Initialize a=0, b=1, count=10
-Step 3: While count > 0: print a, next=a+b, a=b, b=next, count--
-Step 4: End
-
 Program Name: Fibonacci 10 Terms (while)
-Description: Generates and displays the first 10 indices of the Fibonacci sequence using a while loop.
-Concepts Used: while loops, iteration
+Description: Generates and displays the first 10 terms of the Fibonacci sequence using a while loop.
+Concepts Used: While Loops
 */
+
 #include <iostream>
 using namespace std;
 

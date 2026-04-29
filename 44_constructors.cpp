@@ -1,15 +1,10 @@
-// W.A.P. to demo constructors
+// W.A.P. to demo Initialization
 /*
-Algorithm:
-Step 1: Start
-Step 2: Instantiate Default Constructor (no args)
-Step 3: Instantiate Parameterized Constructor (passes integer)
-Step 4: End
-
-Program Name: Explicit Constructors
-Description: Basic instantiation sequences
-Concepts Used: Object instancing, arguments
+Program Name: Constructors
+Description: Special methods that fire automatically to set up state when an object is born.
+Concepts Used: Initialization
 */
+
 #include <iostream>
 using namespace std;
 

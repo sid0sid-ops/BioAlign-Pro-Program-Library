@@ -1,15 +1,10 @@
-// W.A.P. to check leap year
+// W.A.P. to demo Complex Boolean Logic
 /*
-Algorithm:
-Step 1: Start
-Step 2: Input year
-Step 3: If divisible by 400 or (divisible by 4 and not 100), leap year
-Step 4: End
-
-Program Name: Leap Year
-Description: Date validation
-Concepts Used: Logical operators
+Program Name: Leap year check
+Description: Handling multple conditions (divisible by 4, not 100, unless 400).
+Concepts Used: Complex Boolean Logic
 */
+
 #include <iostream>
 using namespace std;
 int main() {

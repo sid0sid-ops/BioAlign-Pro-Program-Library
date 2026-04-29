@@ -1,16 +1,10 @@
-// W.A.P. to convert basic data type to class type
+// W.A.P. to demo Type Conversion
 /*
-Algorithm:
-Step 1: Start
-Step 2: Define Time class with (hours, minutes)
-Step 3: Overload constructor to take int totalMinutes
-Step 4: Create object with Time t = 130
-Step 5: End
-
-Program Name: Basic to Class Conversion
-Description: Int to object conversion
-Concepts Used: Constructor overloading, type conversion
+Program Name: Basic-to-class conversion
+Description: Using overloaded constructors to implicitly convert an `int` or `float` into a complex Class object.
+Concepts Used: Type Conversion
 */
+
 #include <iostream>
 using namespace std;
 

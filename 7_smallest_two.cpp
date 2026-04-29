@@ -1,12 +1,10 @@
+// W.A.P. to demo Simple condition
 /*
-Algorithm to find the smallest of two numbers:
-    Step1: Start
-    Step2: Input two numbers, say A and B
-    Step3: If A < B then small = A
-    Step4: If B < A then Small = B
-    Step5: Print Small
-    Step 6: End
+Program Name: Smallest of two numbers
+Description: Basic conditional assignment.
+Concepts Used: Simple condition
 */
+
 #include <iostream>
 using namespace std;
 

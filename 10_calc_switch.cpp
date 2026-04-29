@@ -1,15 +1,10 @@
-// W.A.P. to create a calculator using switch
+// W.A.P. to demo Switch Case
 /*
-Algorithm:
-Step 1: Start
-Step 2: Take operator & 2 numbers
-Step 3: switch(operator) to compute
-Step 4: End
-
-Program Name: Switch Calculator
-Description: Basic mathematical operations
-Concepts Used: switch-case
+Program Name: Calculator (switch)
+Description: Using a switch statement instead of multiple if-else blocks to achieve clean routing.
+Concepts Used: Switch Case
 */
+
 #include <iostream>
 using namespace std;
 int main() {

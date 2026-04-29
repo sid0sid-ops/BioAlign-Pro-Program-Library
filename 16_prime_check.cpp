@@ -1,17 +1,10 @@
-// W.A.P. to check prime number
+// W.A.P. to demo Algorithmic Search
 /*
-Algorithm:
-Step 1: Start
-Step 2: Input n
-Step 3: If n <= 1 -> Not Prime
-Step 4: Loop i from 2 to sqrt(n)
-Step 5: If n % i == 0 -> finding divisor means Not Prime immediately. Break list.
-Step 6: End
-
-Program Name: Prime Check
-Description: Validates prime numbers computationally optimized to O(sqrt(n)) time.
-Concepts Used: loops, conditional logic, early break
+Program Name: Prime number check
+Description: Looping up to half the number to check for factors, determining primality.
+Concepts Used: Algorithmic Search
 */
+
 #include <iostream>
 using namespace std;
 int main() {

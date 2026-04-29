@@ -1,18 +1,10 @@
-// W.A.P. to demonstrate an Array of Class Objects
+// W.A.P. to demo Object Arrays
 /*
-Algorithm:
-Step 1: Start
-Step 2: Get number of students n
-Step 3: Dynamically allocate array of n objects
-Step 4: Call getdata() for each object
-Step 5: Call show() for each object to display details
-Step 6: Free dynamic memory. End
-
-Program Name: Array of Objects
-Description: Creates n student objects dynamically, takes input,
-             and displays all student details using class methods.
-Concepts Used: class, array of objects, dynamic memory allocation
+Program Name: Array of objects
+Description: Creating arrays where every element is an instance of a class, looping over them.
+Concepts Used: Object Arrays
 */
+
 #include <iostream>
 using namespace std;
 

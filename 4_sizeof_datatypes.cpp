@@ -1,14 +1,10 @@
-// W.A.P. to find size of basic data types using sizeof()
+// W.A.P. to demo Memory Allocation
 /*
-Algorithm:
-Step 1: Start
-Step 2: Print sizeof int, float, char, double
-Step 3: End
-
-Program Name: Sizeof types
-Description: Prints byte size of types
-Concepts Used: sizeof operator
+Program Name: Size of data types
+Description: Using the sizeof() operator to understand byte sizes of primitive types.
+Concepts Used: Memory Allocation
 */
+
 #include <iostream>
 using namespace std;
 int main() {

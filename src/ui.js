@@ -1,4 +1,12 @@
 window.App.UI = {
+
+    // Scrolls the currently active sidebar link into view
+    scrollActiveSidebarItem: function () {
+        if (!window.currentActiveHash) return;
+        const activeLink = document.querySelector(`#sidebarContent a[href="${window.currentActiveHash}"]`);
+        if (activeLink) activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    },
+
     initSidebar: function (searchQuery = "") {
         const sidebar = document.getElementById('sidebarContent');
         sidebar.innerHTML = '';
@@ -187,10 +195,44 @@ window.App.UI = {
     initTerminalResizer: function () {
         const resizer = document.getElementById('terminalResizer');
         const container = document.getElementById('terminalContainer');
-        if (!resizer || !container) return;
+        const output = document.getElementById('terminalOutput');
+        if (!resizer || !container || !output) return;
 
         let startY = 0;
         let startHeight = 0;
+
+        window.App.UI.isExpanded = false;
+        window.App.UI.hasRunSimulation = false;
+
+        window.App.UI.expandConsole = function (forceExpand) {
+            if (forceExpand && window.App.UI.isExpanded) {
+                let needed = output.scrollHeight + 60;
+                let maxH = window.innerHeight * 0.65;
+                container.style.height = Math.max(160, Math.min(needed, maxH)) + 'px';
+                return;
+            }
+            if (forceExpand === false && !window.App.UI.isExpanded) return;
+
+            window.App.UI.isExpanded = forceExpand !== undefined ? forceExpand : !window.App.UI.isExpanded;
+            container.style.transition = 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+
+            if (window.App.UI.isExpanded) {
+                let needed = output.scrollHeight + 60;
+                let maxH = window.innerHeight * 0.65;
+                container.style.height = Math.max(180, Math.min(needed, maxH)) + 'px';
+            } else {
+                container.style.height = '160px';
+            }
+            setTimeout(() => container.style.transition = 'none', 300);
+        };
+
+        output.style.cursor = 'pointer';
+        output.setAttribute('title', 'Click to expand/collapse explicitly AFTER running.');
+        output.addEventListener('click', (e) => {
+            if (window.getSelection().toString().length > 0) return;
+            if (!window.App.UI.hasRunSimulation) return;
+            window.App.UI.expandConsole();
+        });
 
         resizer.addEventListener('mousedown', (e) => {
             startY = e.clientY;
@@ -199,7 +241,9 @@ window.App.UI = {
 
             const mouseMoveHandler = (e) => {
                 const dy = startY - e.clientY;
+                container.style.transition = 'none';
                 container.style.height = `${startHeight + dy}px`;
+                isExpanded = parseInt(container.style.height) > 200;
             };
 
             const mouseUpHandler = () => {
@@ -210,6 +254,34 @@ window.App.UI = {
 
             document.addEventListener('mousemove', mouseMoveHandler);
             document.addEventListener('mouseup', mouseUpHandler);
+        });
+    },
+
+    // 📏 Horizontal sidebar resizer (desktop only)
+    initSidebarResizer: function () {
+        const resizer = document.getElementById('sidebarResizer');
+        const sidebar = document.getElementById('sidebar');
+        if (!resizer || !sidebar) return;
+
+        let isResizing = false;
+
+        resizer.addEventListener('mousedown', () => {
+            isResizing = true;
+            document.body.classList.add('select-none');
+            document.body.style.cursor = 'ew-resize';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isResizing) return;
+            const newWidth = Math.max(200, Math.min(520, e.clientX));
+            sidebar.style.width = newWidth + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!isResizing) return;
+            isResizing = false;
+            document.body.classList.remove('select-none');
+            document.body.style.cursor = '';
         });
     }
 };

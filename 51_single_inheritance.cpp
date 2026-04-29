@@ -1,17 +1,10 @@
-// W.A.P. to demo single inheritance
+// W.A.P. to demo Code Reusability
 /*
-Algorithm:
-       [ Vehicle Class ] (Base)
-               |
-          (inherits)
-               |
-               v
-         [ Car Class ]   (Derived)
-
-Program Name: Single Inheritance
-Description: Parent child relations
-Concepts Used: Single Inheritance
+Program Name: Single inheritance
+Description: A child class extending a parent class, inheriting its methods and public attributes.
+Concepts Used: Code Reusability
 */
+
 #include <iostream>
 using namespace std;
 

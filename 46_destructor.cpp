@@ -1,27 +1,34 @@
-// W.A.P. to demo destructor
+// W.A.P. to demo Cleanup
 /*
-Algorithm:
-Step 1: Start
-Step 2: Define ~Class()
-Step 3: Print msg on destroy
-Step 4: End
-
 Program Name: Destructor
-Description: Memory cleanup method
-Concepts Used: destructors (~)
+Description: Special methods (`~Name()`) that fire when an object is destroyed or falls out of scope.
+Concepts Used: Cleanup
 */
+
 #include <iostream>
 using namespace std;
 
-class DemoDes {
+class Demo {
 public:
-    DemoDes() { cout << "Created\n"; }
-    ~DemoDes() { cout << "Destroyed\n"; }
+    // Constructor
+    Demo() {
+        cout << "Constructor called (Object created)" << endl;
+    }
+
+    // Destructor
+    ~Demo() {
+        cout << "Destructor called (Object destroyed)" << endl;
+    }
+
+    void display() {
+        cout << "Inside display function" << endl;
+    }
 };
 
 int main() {
-    {
-        DemoDes d;
-    } // goes out of scope, prints destroyed
-    return 0;
+    Demo obj;   // Object created
+
+    obj.display();
+
+    return 0;   // Destructor automatically called here
 }

@@ -9,8 +9,6 @@ window.App.Diagrams = {
         this.renderCtx = document.getElementById('diagramRenderCtx');
 
         if (!this.btn || !this.modal) return;
-
-        // Initialize Mermaid
         if (typeof mermaid !== 'undefined') {
             mermaid.initialize({ startOnLoad: false, theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default' });
         }
@@ -20,7 +18,6 @@ window.App.Diagrams = {
         this.modal.addEventListener('click', (e) => {
             if (e.target === this.modal) this.closeModal();
         });
-
         this.dlBtn.addEventListener('click', () => this.downloadPNG());
     },
 
@@ -30,8 +27,11 @@ window.App.Diagrams = {
 
         let pattern = "";
         const fileObj = window.App.Data.cppFiles.find(f => f.id === fileId);
+        const manualOverride = window.__MANUAL_DIAGRAMS__ && window.__MANUAL_DIAGRAMS__[fileId];
 
-        if (fileObj && fileObj.diagramPattern) {
+        if (manualOverride) {
+            pattern = manualOverride + "\n" + this.styles();
+        } else if (fileObj && fileObj.diagramPattern) {
             pattern = fileObj.diagramPattern;
         } else {
             pattern = this.generatePatternFromCode(code, fileObj?.title || fileId);
@@ -48,157 +48,190 @@ window.App.Diagrams = {
     closeModal: function () {
         this.modal.classList.add('opacity-0');
         this.modal.firstElementChild.classList.add('scale-95');
-        setTimeout(() => {
-            this.modal.classList.add('hidden');
-        }, 300);
+        setTimeout(() => { this.modal.classList.add('hidden'); }, 300);
     },
 
+    // 🔷 1. DETECT TYPE
+    detectProgramType: function (code, title) {
+        const header = title ? title.toLowerCase() : "";
+        if (header.includes("recurs")) return "recursion";
+        if (/class\s+\w+\s*:\s*(public|private|protected)\s+\w+/.test(code)) return "inheritance";
+        if (/class\s+\w+/.test(code)) return "oop";
+        if (/(for|while)\s*\(/.test(code)) return "loop";
+        if (/if\s*\(/.test(code)) return "decision";
+        return "simple";
+    },
+
+    // 🔷 2. EXTRACT ALGORITHM-AWARE LOGIC
+    extractInfo: function (code) {
+        let lines = code.split('\n');
+        let initOps = [];
+        let bodyOps = [];
+        let inLoop = false;
+
+        for (let l of lines) {
+            let t = l.trim();
+            if (t.startsWith("for") || t.startsWith("while")) inLoop = true;
+            if (t === "}") inLoop = false;
+
+            // Extract clean mathematical assignment instructions securely
+            if (!t.startsWith("/") && !t.startsWith("cout") && !t.startsWith("cin") && !t.startsWith("return") && !t.startsWith("class") && !t.startsWith("#") && !t.startsWith("using")) {
+                let isOp = t.includes("=") || t.includes("++") || t.includes("--") || t.includes("+=") || t.includes("-=");
+                if (isOp && !t.includes("==") && !t.includes("for") && !t.includes("while")) {
+                    let cleanOp = t.replace(";", "").replace("int ", "").replace("float ", "").replace("double ", "").trim();
+                    if (cleanOp.length > 0 && cleanOp.length < 40) {
+                        if (inLoop) bodyOps.push(cleanOp);
+                        else initOps.push(cleanOp);
+                    }
+                }
+            }
+        }
+
+        return {
+            hasInput: /cin\s*>>/.test(code),
+            hasOutput: /cout\s*<<|printf/.test(code),
+            condition: (code.match(/if\s*\((.*?)\)/) || [])[1] || "Condition",
+            loop: (code.match(/(for|while)\s*\((.*?)\)/) || [])[2] || "Condition",
+            initOps: initOps.length > 0 ? initOps.slice(0, 3) : ["Initialize Variables"],
+            bodyOps: bodyOps.length > 0 ? bodyOps.slice(0, 4) : ["Process Logic"]
+        };
+    },
+
+    // 🔷 3. CLEAN TEXT
+    clean: function (txt) {
+        if (!txt) return "";
+        return txt
+            .replace(/&&/g, "AND")
+            .replace(/\|\|/g, "OR")
+            .replace(/"/g, "'")
+            .slice(0, 50);
+    },
+
+    // 🔷 4. MAIN GENERATOR
     generatePatternFromCode: function (code, title) {
-        let definitions = [];
-        let edges = [];
-        let n = 1;
+        const type = this.detectProgramType(code, title);
+        const info = this.extractInfo(code);
 
-        definitions.push(`NodeStart(["Start"]):::greenOut`);
-        let current = "NodeStart";
+        switch (type) {
+            case "recursion": return this.templateRecursion(info);
+            case "inheritance": return this.templateInheritance(info);
+            case "oop": return this.templateOOP(info);
+            case "loop": return this.templateLoop(info);
+            case "decision": return this.templateDecision(info);
+            default: return this.templateSimple(info);
+        }
+    },
 
-        // Check file characteristics
-        const hasInput = code.includes("cin >>");
-        const hasOutput = code.includes("cout <<");
-        const loops = code.match(/(for|while)\s*\((.*?)\)/);
-        const ifCondition = code.match(/if\s*\((.*?)\)/);
-        const functions = code.match(/\w+\s+(\w+)\s*\(.*\)\s*\{/g);
-        const isInheritance = code.match(/class\s+(\w+)\s*:\s*.*?(public|protected|private)\s+(\w+)/);
-        const isOOP = code.match(/class\s+(\w+)/);
+    // 🔥 STRUCTURED TEMPLATES (DYNAMIC EDGE ROUTING & AUTO HIDING)
+    templateRecursion: function (info) {
+        let diag = `flowchart TD\n    A(["Start"]):::startEnd\n`;
+        let prev = "A";
 
-        const cleanCondition = (txt) => txt.replace(/"/g, "'").substring(0, 70).trim();
+        if (info.hasInput) { diag += `    B[/"Enter Input"/]:::input\n    ${prev} --> B\n`; prev = "B"; }
+        diag += `    C["Invoke Recursive Function"]:::process\n    ${prev} --> C\n`;
 
-        // 1. Input
-        if (hasInput) {
-            let id = `N${n++}`;
-            definitions.push(`${id}[/"Input Param(s)"/]:::blue`);
-            edges.push(`    ${current} --> ${id}`);
-            current = id;
+        diag += `    D{"Base Case Reached? (${this.clean(info.condition)})"}:::decision\n    C --> D\n`;
+
+        diag += `    E["Call Self (Recursive Loop)"]:::process\n    D -- No --> E\n    E --> C\n`;
+
+        diag += `    F["Base Return AND Unwind Stack"]:::process\n    D -- Yes --> F\n`;
+        prev = "F";
+
+        if (info.hasOutput) { diag += `    G[/"Display Output"/]:::output\n    ${prev} --> G\n`; prev = "G"; }
+        diag += `    H(["End"]):::startEnd\n    ${prev} --> H\n\n    ${this.styles()}`;
+        return diag;
+    },
+
+    templateDecision: function (info) {
+        const initText = info.initOps.map(op => this.clean(op)).join("<br>");
+        let diag = `flowchart TD\n    A(["Start"]):::startEnd\n`;
+        let prev = "A";
+
+        if (info.hasInput) { diag += `    B[/"Enter Input"/]:::input\n    ${prev} --> B\n`; prev = "B"; }
+        diag += `    C["${initText}"]:::process\n    ${prev} --> C\n`;
+        diag += `    D{"${this.clean(info.condition)} ?"}:::decision\n    C --> D\n`;
+        diag += `    E["True Case Logic"]:::process\n    F["False Case Logic"]:::process\n`;
+
+        if (info.hasOutput) {
+            diag += `    G[/"Print Result"/]:::output\n    E --> G\n    F --> G\n    G --> H(["End"]):::startEnd\n`;
+        } else {
+            diag += `    E --> H(["End"]):::startEnd\n    F --> H\n`;
         }
 
-        // 2. Logic processing based on predominant paradigm
-        if (isInheritance) {
-            let derived = isInheritance[1];
-            let base = isInheritance[3];
+        diag += `    D -- Yes --> E\n    D -- No --> F\n\n    ${this.styles()}`;
+        return diag;
+    },
 
-            let id1 = `N${n++}`; definitions.push(`${id1}["Instantiate Object of ${derived}"]:::blue`);
-            edges.push(`    ${current} --> ${id1}`); current = id1;
+    templateLoop: function (info) {
+        const loopCond = info.loop ? this.clean(info.loop) : "Condition";
+        const initText = info.initOps.map(op => this.clean(op)).join("<br>");
+        const bodyText = info.bodyOps.map(op => this.clean(op)).join("<br>");
 
-            let id2 = `N${n++}`; definitions.push(`${id2}["Use Inherited Base (${base}) Features"]:::yellow`);
-            edges.push(`    ${current} --> ${id2}`); current = id2;
+        let diag = `flowchart TD\n    A(["Start"]):::startEnd\n`;
+        let prev = "A";
 
-            let id3 = `N${n++}`; definitions.push(`${id3}["Use Specific Derived (${derived}) Features"]:::yellow`);
-            edges.push(`    ${current} --> ${id3}`); current = id3;
-        }
-        else if (isOOP) {
-            let id1 = `N${n++}`; definitions.push(`${id1}["Instantiate Class Object"]:::blue`);
-            edges.push(`    ${current} --> ${id1}`); current = id1;
+        if (info.hasInput) { diag += `    B[/"Enter Input"/]:::input\n    ${prev} --> B\n`; prev = "B"; }
+        diag += `    C["${initText}"]:::process\n    ${prev} --> C\n`;
+        diag += `    D{"${loopCond}"}:::decision\n    C --> D\n`;
+        diag += `    E["${bodyText}"]:::process\n    D -- Yes --> E\n    E --> D\n`;
 
-            let id2 = `N${n++}`; definitions.push(`${id2}["Invoke Object Methods / Encapsulated Logic"]:::yellow`);
-            edges.push(`    ${current} --> ${id2}`); current = id2;
-        }
-        let tokens = [];
-        let ifMatches = [...code.matchAll(/(?:else\s+)?if\s*\((.*)\)/g)];
-        let loopMatches = [...code.matchAll(/(for|while)\s*\((.*)\)/g)];
-        let switchMatches = [...code.matchAll(/switch\s*\((.*)\)/g)];
-        let funcMatches = [...code.matchAll(/\w+\s+(\w+)\s*\(.*\)\s*\{/g)].filter(m => m[1] !== 'main');
-
-        tokens.push(...ifMatches.map(m => ({ type: 'if', cond: m[1], index: m.index })));
-        tokens.push(...loopMatches.map(m => ({ type: 'loop', cond: m[2], index: m.index })));
-        tokens.push(...switchMatches.map(m => ({ type: 'switch', cond: m[1], index: m.index })));
-        if (funcMatches.length > 0) tokens.push({ type: 'func', index: funcMatches[0].index });
-
-        tokens.sort((a, b) => a.index - b.index);
-
-        let i = 0;
-        while (i < tokens.length) {
-            let t = tokens[i];
-            if (t.type === 'if') {
-                let condList = [t];
-                // Gather adjacent conditions logically to form an else if ladder
-                while (i + 1 < tokens.length && tokens[i + 1].type === 'if') {
-                    condList.push(tokens[i + 1]); i++;
-                }
-
-                let convergeId = `N${n++}`; definitions.push(`${convergeId}(( )):::yellow`);
-                for (let j = 0; j < condList.length; j++) {
-                    let c = condList[j];
-                    let condId = `N${n++}`;
-                    let logicStr = cleanCondition(c.cond);
-                    if (logicStr.includes('400')) logicStr = "(year % 400 == 0) OR (year % 4 == 0 AND year % 100 != 0)";
-
-                    definitions.push(`${condId}{"${logicStr} ?"}:::yellow`);
-                    if (j === 0) edges.push(`    ${current} --> ${condId}`);
-                    else edges.push(`    ${current} -- "No" --> ${condId}`);
-
-                    let trueId = `N${n++}`; definitions.push(`${trueId}["Execute Condition ${j + 1} True"]:::blue`);
-                    edges.push(`    ${condId} -- "Yes" --> ${trueId}`);
-                    edges.push(`    ${trueId} --> ${convergeId}`);
-
-                    current = condId;
-                }
-
-                let falseId = `N${n++}`; definitions.push(`${falseId}["Execute Else/Fallback"]:::blue`);
-                edges.push(`    ${current} -- "No" --> ${falseId}`);
-                edges.push(`    ${falseId} --> ${convergeId}`);
-                current = convergeId;
-            }
-            else if (t.type === 'loop') {
-                let loopId = `N${n++}`; definitions.push(`${loopId}{{"Loop: ${cleanCondition(t.cond)}"}}:::yellow`);
-                edges.push(`    ${current} --> ${loopId}`);
-                let bodyId = `N${n++}`; definitions.push(`${bodyId}["Process Loop Logic"]:::blue`);
-                edges.push(`    ${loopId} -- "True" --> ${bodyId}`);
-                edges.push(`    ${bodyId} -- "Iterate" --> ${loopId}`);
-                let contId = `N${n++}`; definitions.push(`${contId}(( )):::yellow`);
-                edges.push(`    ${loopId} -- "False" --> ${contId}`);
-                current = contId;
-            }
-            else if (t.type === 'switch') {
-                let swId = `N${n++}`; definitions.push(`${swId}{"Switch: ${cleanCondition(t.cond)}"}:::yellow`);
-                edges.push(`    ${current} --> ${swId}`);
-                let case1 = `N${n++}`; definitions.push(`${case1}["Match Evaluated Case"]:::blue`);
-                let case2 = `N${n++}`; definitions.push(`${case2}["Match Default"]:::blue`);
-                edges.push(`    ${swId} -- "Matches" --> ${case1}`);
-                edges.push(`    ${swId} -- "Default" --> ${case2}`);
-                let convergeId = `N${n++}`; definitions.push(`${convergeId}(( )):::yellow`);
-                edges.push(`    ${case1} --> ${convergeId}`);
-                edges.push(`    ${case2} --> ${convergeId}`);
-                current = convergeId;
-            }
-            else if (t.type === 'func') {
-                let callId = `N${n++}`; definitions.push(`${callId}["Call Helper Function(s)"]:::yellow`);
-                edges.push(`    ${current} --> ${callId}`);
-                let retId = `N${n++}`; definitions.push(`${retId}["Apply Return Logic"]:::blue`);
-                edges.push(`    ${callId} --> ${retId}`);
-                current = retId;
-            }
-            i++;
+        if (info.hasOutput) {
+            diag += `    F[/"Print Result"/]:::output\n    D -- No --> F\n    F --> G(["End"]):::startEnd\n`;
+        } else {
+            diag += `    D -- No --> G(["End"]):::startEnd\n`;
         }
 
-        // 3. Output
-        if (hasOutput && current) {
-            let outId = `N${n++}`;
-            definitions.push(`${outId}[/"Display / Print Results"/]:::blue`);
-            edges.push(`    ${current} --> ${outId}`);
-            current = outId;
-        }
+        diag += `\n    ${this.styles()}`;
+        return diag;
+    },
 
-        // 4. End
-        definitions.push(`NodeEnd(["End"]):::redOut`);
-        if (current) {
-            edges.push(`    ${current} --> NodeEnd`);
+    templateOOP: function (info) {
+        let diag = `flowchart TD\n    A(["Start"]):::startEnd\n    B["Create Object"]:::process\n    C["Call Methods"]:::process\n    D["Process Inside Class"]:::process\n`;
+        diag += `    A --> B --> C --> D\n`;
+        if (info.hasOutput) {
+            diag += `    E[/"Display Output"/]:::output\n    D --> E\n    E --> F(["End"]):::startEnd\n`;
+        } else {
+            diag += `    D --> F(["End"]):::startEnd\n`;
         }
+        diag += `\n    ${this.styles()}`;
+        return diag;
+    },
 
-        let graphDef = "flowchart TD\n" + edges.join('\n') + "\n\n" + definitions.join('\n');
-        graphDef += `\n    classDef greenOut fill:#4ade80,stroke:#22c55e,color:black,rx:15,ry:15;\n`;
-        graphDef += `    classDef blue fill:#60a5fa,stroke:#3b82f6,color:black,rx:5,ry:5;\n`;
-        graphDef += `    classDef yellow fill:#fde047,stroke:#eab308,color:black,rx:5,ry:5;\n`;
-        graphDef += `    classDef redOut fill:#f87171,stroke:#ef4444,color:white,rx:15,ry:15;\n`;
-        return graphDef;
+    templateInheritance: function (info) {
+        let diag = `flowchart TD\n    A(["Start"]):::startEnd\n    B["Create Derived Object"]:::process\n    C["Access Base Class Features"]:::process\n    D["Access Derived Class Features"]:::process\n`;
+        diag += `    A --> B --> C --> D\n`;
+        if (info.hasOutput) {
+            diag += `    E[/"Display Output"/]:::output\n    D --> E\n    E --> F(["End"]):::startEnd\n`;
+        } else {
+            diag += `    D --> F(["End"]):::startEnd\n`;
+        }
+        diag += `\n    ${this.styles()}`;
+        return diag;
+    },
+
+    templateSimple: function (info) {
+        const usedInit = info.initOps[0] !== "Initialize Variables" ? info.initOps.map(op => this.clean(op)).join("<br>") : "Process Logic";
+        let diag = `flowchart TD\n    A(["Start"]):::startEnd\n`;
+        let prev = "A";
+
+        if (info.hasInput) { diag += `    B[/"Enter Input"/]:::input\n    ${prev} --> B\n`; prev = "B"; }
+        diag += `    C["${usedInit}"]:::process\n    ${prev} --> C\n`;
+        prev = "C";
+
+        if (info.hasOutput) { diag += `    D[/"Display Output"/]:::output\n    ${prev} --> D\n`; prev = "D"; }
+        diag += `    E(["End"]):::startEnd\n    ${prev} --> E\n\n    ${this.styles()}`;
+        return diag;
+    },
+
+    // 🎨 STYLE
+    styles: function () {
+        return `
+classDef startEnd fill:#22c55e,stroke:#16a34a,color:white,rx:20,ry:20;
+classDef input fill:#3b82f6,stroke:#1d4ed8,color:white;
+classDef process fill:#facc15,stroke:#ca8a04,color:black;
+classDef decision fill:#fb7185,stroke:#e11d48,color:white;
+classDef output fill:#a78bfa,stroke:#7c3aed,color:white;
+`;
     },
 
     renderDiagram: async function (patternString, id) {
@@ -208,10 +241,20 @@ window.App.Diagrams = {
                 this.renderCtx.innerHTML = '<div class="text-red-500">Mermaid.js failed to load.</div>';
                 return;
             }
-            // ensure unique id across rerenders
             const uniqueId = `mermaid-${Date.now()}`;
-            const { svg } = await mermaid.render(uniqueId, patternString.replace(/\r/g, ""));
+
+            patternString = patternString.trim();
+            const { svg } = await mermaid.render(uniqueId, patternString);
+
             this.renderCtx.innerHTML = svg;
+
+            const svgEl = this.renderCtx.querySelector('svg');
+            if (svgEl) {
+                svgEl.style.maxWidth = '100% !important';
+                svgEl.style.maxHeight = '100% !important';
+                svgEl.style.width = 'auto';
+                svgEl.style.height = 'auto';
+            }
         } catch (err) {
             console.error("Mermaid Render Error:", err);
             this.renderCtx.innerHTML = `<div class="text-red-500 text-sm p-4 whitespace-pre">Syntax Error generating diagram.\n\n${err.message}</div>`;

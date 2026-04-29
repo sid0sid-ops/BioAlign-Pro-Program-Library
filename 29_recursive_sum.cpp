@@ -1,15 +1,10 @@
-// W.A.P. to calculate recursive sum
+// W.A.P. to demo Recursion
 /*
-Algorithm:
-Step 1: Start
-Step 2: Base case n<=0 return 0
-Step 3: Recursive n + sum(n-1)
-Step 4: End
-
-Program Name: Recursive Sum
-Description: Sum of natural numbers using recursion
-Concepts Used: recursion
+Program Name: Recursive sum of naturals
+Description: A function calling itself with a base case to prevent infinite loops.
+Concepts Used: Recursion
 */
+
 #include <iostream>
 using namespace std;
 

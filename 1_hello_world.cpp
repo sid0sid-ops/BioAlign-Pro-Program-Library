@@ -1,9 +1,10 @@
-// W.A.P. to print "Hello World"
+// W.A.P. to demo Standard I/O stream
 /*
-Program Name: Hello World
-Description: Prints simple text
-Concepts Used: I/O
+Program Name: Print "Hello World"
+Description: The absolute beginning. Demonstrates how to write to standard output using the `cout` stream (with `using namespace std;`).
+Concepts Used: Standard I/O stream
 */
+
 #include <iostream>
 using namespace std;
 int main() {

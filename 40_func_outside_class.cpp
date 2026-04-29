@@ -1,14 +1,10 @@
-// W.A.P. to define func outside class (::)
+// W.A.P. to demo Scope Resolution
 /*
-Algorithm:
-Step 1: Start
-Step 2: Declare func in class. Define outside Action::func()
-Step 3: End
-
-Program Name: Scope Resolution
-Description: Out of class definition pattern
-Concepts Used: Scope resolution operator (::)
+Program Name: Function outside class
+Description: Declaring a method inside a class, but defining it outside use the `::` operator.
+Concepts Used: Scope Resolution
 */
+
 #include <iostream>
 using namespace std;
 

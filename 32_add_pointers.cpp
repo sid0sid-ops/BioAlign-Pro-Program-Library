@@ -1,15 +1,10 @@
-// W.A.P. to add two numbers using pointers
+// W.A.P. to demo Pointer Arithmetic
 /*
-Algorithm:
-Step 1: Start
-Step 2: Assign pointers to a & b
-Step 3: sum = *ptrA + *ptrB
-Step 4: End
-
-Program Name: Pointers Addition
-Description: Accesses values directly from memory
-Concepts Used: pointer dereference arithmetic
+Program Name: Add numbers via pointers
+Description: Using pointers to indirectly access and sum distinct memory locations.
+Concepts Used: Pointer Arithmetic
 */
+
 #include <iostream>
 using namespace std;
 

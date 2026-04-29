@@ -1,16 +1,10 @@
-// W.A.P. to demonstrate C++ Generics / Templates
+// W.A.P. to demo Generic Programming
 /*
-Algorithm:
-Step 1: Start
-Step 2: Define a generic `template <typename T>` function.
-Step 3: Call the function natively passing integers.
-Step 4: Call the exact same function natively passing floats without rewriting logic!
-Step 5: End
-
-Program Name: C++ Templates & Generics
-Description: Re-using identical logic blocks effectively across drastically different data types algebraically.
-Concepts Used: Compile-time polymorphism, template parameters
+Program Name: C++ Templates (Generics)
+Description: Creating generic `template <typename T>` signatures able to intuitively execute standard mathematical routines across varying data bounds (int, float, string) simultaneously.
+Concepts Used: Generic Programming
 */
+
 #include <iostream>
 using namespace std;
 

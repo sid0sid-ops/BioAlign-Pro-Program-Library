@@ -28,7 +28,7 @@ if os.path.exists(script_path):
         print("Warning: Could not extract Prism from script.js")
 
 # 3. Concatenate Modules
-modules = ["data.js", "search.js", "ui.js", "viewer.js", "simulator.js", "diagrams.js", "background.js", "main.js"]
+modules = ["data.js", "search.js", "ui.js", "viewer.js", "simulator.js", "manual_diagrams.js", "diagrams.js", "background.js", "main.js"]
 combined_js = prism_part + f"window.__CPP_CONTENTS__ = {json.dumps(cpp_contents)};\n\nwindow.App = {{}};\n\n"
 
 for mod in modules:

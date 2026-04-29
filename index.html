@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>C++ Program Library | BioAlign-Pro Edit</title>
     <meta name="description" content="A comprehensive C++ Program Library">
 
@@ -79,6 +79,11 @@
                 title="Toggle Light/Dark Theme">
                 <i id="themeIcon" class="fa-solid fa-moon text-black dark:text-white"></i>
             </button>
+            <button id="mobileSearchBtn"
+                class="hidden md:flex lg:hidden w-8 h-8 items-center justify-center rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors focus:outline-none bg-gray-100 dark:bg-[#3d3d3d]/50 backdrop-blur"
+                title="Search Programs">
+                <i class="fa-solid fa-search text-black dark:text-white"></i>
+            </button>
             <div class="hidden md:flex items-center gap-4">
                 <a href="https://sid0sid-ops.github.io/BioAlign-Pro-Homepage/"
                     class="flex items-center gap-2 px-3 py-1 hover:bg-black/5 dark:hover:bg-white/10 hover:text-black dark:hover:text-white rounded-full transition-colors focus:outline-none"
@@ -134,149 +139,149 @@
             class="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 hidden transition-opacity opacity-0 lg:hidden cursor-pointer">
         </div>
 
+        <!-- Horizontal sidebar resizer — desktop only -->
+        <div id="sidebarResizer"
+            class="hidden lg:block w-[5px] shrink-0 cursor-ew-resize bg-transparent hover:bg-primary/50 active:bg-primary/70 transition-colors duration-150 z-30 select-none">
+        </div>
+
+
 <!-- END MODULE: sidebar.html -->
 
 <!-- START MODULE: editor_layout.html -->
-        <section id="contentArea"
-            class="flex-1 flex flex-col min-w-0 bg-gray-50 dark:bg-[#0a0a0a] relative z-10 transition-colors duration-300 w-full">
-            <div id="emptyState"
-                class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
-                <div
-                    class="w-32 h-32 mb-6 rounded-3xl bg-transparent flex items-center justify-center transition-transform hover:scale-105 duration-500 relative">
-                    <svg viewBox="0 0 128 128" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"
-                        class="w-full h-full drop-shadow-[0_10px_25px_rgba(37,99,235,0.4)] relative z-10">
-                        <path fill="#00599C"
-                            d="M118.5 28L71 1.5a14 14 0 00-14 0L9.5 28C5.2 30.4 2.5 35.1 2.5 40v55.5c0 4.9 2.7 9.6 7 12l47.5 26.5a14 14 0 0014 0l47.5-26.5c4.3-2.4 7-7.1 7-12V40c0-4.9-2.7-9.6-7-12z" />
-                        <path fill="#004482"
-                            d="M64 126.5v-125a14 14 0 017 1.5L118.5 28c4.3 2.4 7 7.1 7 12v55.5c0 4.9-2.7 9.6-7 12l-47.5 26.5c-2.3 1.3-4.6 1.8-7 2.5z" />
-                        <path fill="#FFF"
-                            d="M62 81.4c-9 0-15-7-15-17.4s6-17.4 15-17.4c6.2 0 10.6 3.6 13.2 9l-8.5 5c-1.3-3.6-2.9-5-5-5-4 0-6 3.6-6 9s2 9 6 9c2.5 0 4.2-1.7 5.3-5l8.6 4.6c-3.1 5.4-7.2 8.8-14.1 8.8z" />
-                        <path fill="#FFF"
-                            d="M90 70.5h-5.9v6.5H76v-6.5h-5.9v-8.1H76v-6.5h8.1v6.5H90v8.1zM107.5 70.5h-5.9v6.5H93.5v-6.5h-5.9v-8.1h5.9v-6.5h8.1v6.5h5.9v8.1z" />
-                    </svg>
-                    <div class="absolute inset-0 bg-primary/20 blur-[50px] rounded-full z-0"></div>
-                </div>
-                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-3 tracking-tight">C++ Developer Hub</h2>
-                <div
-                    class="flex flex-wrap items-center justify-center gap-2 mb-6 text-xs text-gray-500 dark:text-gray-400">
-                    <span class="bg-gray-200 dark:bg-[#2a2a2a] px-2 py-1 rounded-md">49 Programs</span>
-                    <span>•</span>
-                    <span class="bg-gray-200 dark:bg-[#2a2a2a] px-2 py-1 rounded-md">Matrix Integration</span>
-                    <span>•</span>
-                    <span class="bg-gray-200 dark:bg-[#2a2a2a] px-2 py-1 rounded-md">Live Output Simulator</span>
-                </div>
-                <p class="text-gray-500 dark:text-gray-400 max-w-md text-sm sm:text-base leading-relaxed">Select a
-                    specific program from the sidebar to view its structure, read the algorithmic concepts, and compile
-                    it dynamically.</p>
+<section id="contentArea"
+    class="flex-1 flex flex-col min-w-0 bg-gray-50 dark:bg-[#0a0a0a] relative z-10 transition-colors duration-300 w-full">
+    <div id="emptyState" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
+        <div
+            class="w-32 h-32 mb-6 rounded-3xl bg-transparent flex items-center justify-center transition-transform hover:scale-105 duration-500 relative">
+            <svg viewBox="0 0 128 128" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"
+                class="w-full h-full drop-shadow-[0_10px_25px_rgba(37,99,235,0.4)] relative z-10">
+                <path fill="#00599C"
+                    d="M118.5 28L71 1.5a14 14 0 00-14 0L9.5 28C5.2 30.4 2.5 35.1 2.5 40v55.5c0 4.9 2.7 9.6 7 12l47.5 26.5a14 14 0 0014 0l47.5-26.5c4.3-2.4 7-7.1 7-12V40c0-4.9-2.7-9.6-7-12z" />
+                <path fill="#004482"
+                    d="M64 126.5v-125a14 14 0 017 1.5L118.5 28c4.3 2.4 7 7.1 7 12v55.5c0 4.9-2.7 9.6-7 12l-47.5 26.5c-2.3 1.3-4.6 1.8-7 2.5z" />
+                <path fill="#FFF"
+                    d="M62 81.4c-9 0-15-7-15-17.4s6-17.4 15-17.4c6.2 0 10.6 3.6 13.2 9l-8.5 5c-1.3-3.6-2.9-5-5-5-4 0-6 3.6-6 9s2 9 6 9c2.5 0 4.2-1.7 5.3-5l8.6 4.6c-3.1 5.4-7.2 8.8-14.1 8.8z" />
+                <path fill="#FFF"
+                    d="M90 70.5h-5.9v6.5H76v-6.5h-5.9v-8.1H76v-6.5h8.1v6.5H90v8.1zM107.5 70.5h-5.9v6.5H93.5v-6.5h-5.9v-8.1h5.9v-6.5h8.1v6.5h5.9v8.1z" />
+            </svg>
+            <div class="absolute inset-0 bg-primary/20 blur-[50px] rounded-full z-0"></div>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-3 tracking-tight">C++ Developer Hub</h2>
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-6 text-xs text-gray-500 dark:text-gray-400">
+            <span class="bg-gray-200 dark:bg-[#2a2a2a] px-2 py-1 rounded-md">61 Programs</span>
+            <span>•</span>
+            <span class="bg-gray-200 dark:bg-[#2a2a2a] px-2 py-1 rounded-md">Matrix Integration</span>
+            <span>•</span>
+            <span class="bg-gray-200 dark:bg-[#2a2a2a] px-2 py-1 rounded-md">Live Output Simulator</span>
+        </div>
+        <p class="text-gray-500 dark:text-gray-400 max-w-md text-sm sm:text-base leading-relaxed">Select a
+            specific program from the sidebar to view its structure, read the algorithmic concepts, and compile
+            it dynamically.</p>
+    </div>
+
+    <div id="viewerContainer" class="hidden flex-col h-full w-full">
+        <div
+            class="h-14 border-b border-gray-200 dark:border-[#333333] bg-white/95 dark:bg-[#212121]/50 flex items-center justify-between px-4 sm:px-6 shrink-0 backdrop-blur">
+            <div class="flex flex-col min-w-0 pr-4">
+                <h2 id="currentFileName"
+                    class="text-sm sm:text-base font-bold text-gray-800 dark:text-white truncate font-mono">
+                    Select a file</h2>
+                <span id="currentUnitName" class="text-[10px] sm:text-xs text-primary truncate hidden sm:block">Unit
+                    details</span>
             </div>
-
-            <div id="viewerContainer" class="hidden flex-col h-full w-full">
-                <div
-                    class="h-14 border-b border-gray-200 dark:border-[#333333] bg-white/95 dark:bg-[#212121]/50 flex items-center justify-between px-4 sm:px-6 shrink-0 backdrop-blur">
-                    <div class="flex flex-col min-w-0 pr-4">
-                        <h2 id="currentFileName"
-                            class="text-sm sm:text-base font-bold text-gray-800 dark:text-white truncate font-mono">
-                            Select a file</h2>
-                        <span id="currentUnitName"
-                            class="text-[10px] sm:text-xs text-primary truncate hidden sm:block">Unit details</span>
-                    </div>
-                    <div class="flex items-center gap-2 shrink-0">
-                        <div class="flex items-center gap-1 border-r border-gray-200 dark:border-[#333333] pr-2 mr-1">
-                            <button id="prevBtn"
-                                class="flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 text-gray-600 dark:text-gray-300 transition-colors"
-                                title="Previous Program"><i class="fa-solid fa-chevron-left"></i></button>
-                            <button id="nextBtn"
-                                class="flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 text-gray-600 dark:text-gray-300 transition-colors"
-                                title="Next Program"><i class="fa-solid fa-chevron-right"></i></button>
-                        </div>
-                        <button id="diagramBtn"
-                            class="flex items-center justify-center w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 rounded-md hover:bg-yellow-100/50 dark:hover:bg-yellow-500/10 text-yellow-600 dark:text-yellow-500 transition-colors text-sm font-medium border border-transparent hover:border-yellow-200/50 dark:hover:border-yellow-500/20 focus:outline-none"
-                            title="View Algorithm Diagram"><i class="fa-solid fa-diagram-project"></i> <span
-                                class="hidden sm:inline ml-2">Diagram</span></button>
-                        <button id="downloadBtn"
-                            class="flex items-center justify-center w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 text-gray-600 dark:text-gray-300 transition-colors text-sm font-medium border border-transparent hover:border-gray-200 dark:hover:border-white/10 focus:outline-none"
-                            title="Download .cpp file"><i class="fa-solid fa-download"></i> <span
-                                class="hidden sm:inline ml-2">Download</span></button>
-                        <button id="copyBtn"
-                            class="flex items-center justify-center w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 text-primary transition-colors text-sm font-semibold border border-primary/20 hover:border-primary/40 shadow-sm relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-primary/50"
-                            title="Copy Code"><i
-                                class="fa-regular fa-copy group-hover:scale-110 transition-transform duration-200"></i>
-                            <span class="hidden sm:inline ml-2">Copy Code</span></button>
-                    </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="flex items-center gap-1 border-r border-gray-200 dark:border-[#333333] pr-2 mr-1">
+                    <button id="prevBtn"
+                        class="flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 text-gray-600 dark:text-gray-300 transition-colors"
+                        title="Previous Program"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button id="nextBtn"
+                        class="flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 text-gray-600 dark:text-gray-300 transition-colors"
+                        title="Next Program"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
+                <button id="diagramBtn"
+                    class="flex items-center justify-center w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 rounded-md hover:bg-yellow-100/50 dark:hover:bg-yellow-500/10 text-yellow-600 dark:text-yellow-500 transition-colors text-sm font-medium border border-transparent hover:border-yellow-200/50 dark:hover:border-yellow-500/20 focus:outline-none"
+                    title="View Algorithm Diagram"><i class="fa-solid fa-diagram-project"></i> <span
+                        class="hidden sm:inline ml-2">Diagram</span></button>
+                <button id="downloadBtn"
+                    class="flex items-center justify-center w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-white/5 text-gray-600 dark:text-gray-300 transition-colors text-sm font-medium border border-transparent hover:border-gray-200 dark:hover:border-white/10 focus:outline-none"
+                    title="Download .cpp file"><i class="fa-solid fa-download"></i> <span
+                        class="hidden sm:inline ml-2">Download</span></button>
+                <button id="copyBtn"
+                    class="flex items-center justify-center w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 text-primary transition-colors text-sm font-semibold border border-primary/20 hover:border-primary/40 shadow-sm relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    title="Copy Code"><i
+                        class="fa-regular fa-copy group-hover:scale-110 transition-transform duration-200"></i>
+                    <span class="hidden sm:inline ml-2">Copy Code</span></button>
+            </div>
+        </div>
 
-                <!-- Concept Knowledge Panel -->
-                <div id="conceptPanel"
-                    class="bg-primary/5 dark:bg-primary/10 border-b border-primary/20 p-4 shrink-0 transition-all duration-300 text-gray-800 dark:text-gray-200 shadow-inner glass-card relative">
-                    <button id="closeConceptBtn"
-                        class="absolute top-3 right-3 w-6 h-6 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-gray-500 hover:text-gray-800 dark:hover:text-white transition-colors focus:outline-none">
-                        <i class="fa-solid fa-xmark text-xs"></i>
-                    </button>
-                    <div class="flex items-center gap-2 mb-1.5 pr-6">
-                        <i class="fa-solid fa-lightbulb text-yellow-500 animate-pulse"></i>
-                        <h3 id="conceptName" class="font-bold text-sm">Concept Name</h3>
-                    </div>
-                    <p id="conceptDesc"
-                        class="text-xs text-gray-600 dark:text-gray-300 mb-2 leading-relaxed max-w-4xl pr-4">
-                        Explanation...</p>
-                    <div id="bioNoteContainer"
-                        class="mb-3 border-l-2 border-primary/30 pl-3 py-1 bg-primary/5 rounded-r-md hidden">
-                        <span
-                            class="text-[9px] uppercase font-bold text-primary tracking-widest block mb-0.5">Bioinformatics
-                            Context</span>
-                        <p id="conceptBioNote" class="text-[11px] italic text-gray-700 dark:text-gray-300 leading-snug">
-                        </p>
-                    </div>
-                    <div class="flex items-start gap-1">
-                        <span
-                            class="text-[10px] uppercase font-bold text-gray-500 dark:text-gray-400 tracking-wider shrink-0 mt-0.5">Applies
-                            To:</span>
-                        <span id="conceptUseCase"
-                            class="text-[11px] text-gray-600 dark:text-gray-300 bg-black/5 dark:bg-white/5 px-2 py-0.5 rounded-md">...</span>
-                    </div>
-                </div>
+        <!-- Concept Knowledge Panel -->
+        <div id="conceptPanel"
+            class="bg-primary/5 dark:bg-primary/10 border-b border-primary/20 p-4 shrink-0 transition-all duration-300 text-gray-800 dark:text-gray-200 shadow-inner glass-card relative">
+            <button id="closeConceptBtn"
+                class="absolute top-3 right-3 w-6 h-6 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-gray-500 hover:text-gray-800 dark:hover:text-white transition-colors focus:outline-none">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+            <div class="flex items-center gap-2 mb-1.5 pr-6">
+                <i class="fa-solid fa-lightbulb text-yellow-500 animate-pulse"></i>
+                <h3 id="conceptName" class="font-bold text-sm">Concept Name</h3>
+            </div>
+            <p id="conceptDesc" class="text-xs text-gray-600 dark:text-gray-300 mb-2 leading-relaxed max-w-4xl pr-4">
+                Explanation...</p>
+            <div id="bioNoteContainer"
+                class="mb-3 border-l-2 border-primary/30 pl-3 py-1 bg-primary/5 rounded-r-md hidden">
+                <span class="text-[9px] uppercase font-bold text-primary tracking-widest block mb-0.5">Bioinformatics
+                    Context</span>
+                <p id="conceptBioNote" class="text-[11px] italic text-gray-700 dark:text-gray-300 leading-snug">
+                </p>
+            </div>
+            <div class="flex items-start gap-1">
+                <span
+                    class="text-[10px] uppercase font-bold text-gray-500 dark:text-gray-400 tracking-wider shrink-0 mt-0.5">Applies
+                    To:</span>
+                <span id="conceptUseCase"
+                    class="text-[11px] text-gray-600 dark:text-gray-300 bg-black/5 dark:bg-white/5 px-2 py-0.5 rounded-md">...</span>
+            </div>
+        </div>
 
-                <!-- Re-open Concept Panel Button (Hidden by default) -->
-                <button id="openConceptBtn"
-                    class="hidden absolute top-[70px] right-4 z-20 flex items-center gap-1.5 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary rounded-full text-xs font-semibold backdrop-blur border border-primary/20 transition-all shadow-sm focus:outline-none">
-                    <i class="fa-solid fa-lightbulb text-yellow-500"></i> View Concept
+        <!-- Re-open Concept Panel Button (Hidden by default) -->
+        <button id="openConceptBtn"
+            class="hidden absolute top-[70px] right-4 z-20 flex items-center gap-1.5 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary rounded-full text-xs font-semibold backdrop-blur border border-primary/20 transition-all shadow-sm focus:outline-none">
+            <i class="fa-solid fa-lightbulb text-yellow-500"></i> View Concept
+        </button>
+
+        <!-- Code Content Wrapper -->
+        <div class="flex-1 overflow-auto bg-[#fafafa] dark:bg-[#0c0c0c] relative custom-scrollbar shadow-inner"
+            id="codeWrapper">
+            <pre
+                class="line-numbers !bg-transparent !m-0 !p-4 sm:!p-6 h-full font-mono touch-pan-x touch-pan-y"><code id="codeBlock" class="language-cpp !font-mono text-xs sm:text-sm selection:bg-primary/30 block tracking-tight"></code></pre>
+        </div>
+
+        <!-- Simulated Compiler Terminal -->
+        <div id="terminalContainer"
+            class="h-40 min-h-[4rem] max-h-[80vh] border-t border-gray-200 dark:border-[#2a2a2a] bg-[#0d1117] flex flex-col shrink-0 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] relative z-20">
+            <div id="terminalResizer"
+                class="absolute top-0 left-0 w-full h-[6px] cursor-ns-resize bg-transparent hover:bg-primary/50 transition-colors z-30 transform -translate-y-1/2">
+            </div>
+            <div class="flex items-center justify-between px-4 py-2 bg-[#161b22] border-b border-[#30363d] shrink-0">
+                <span class="text-xs font-mono text-gray-400 flex items-center select-none"><i
+                        class="fa-solid fa-terminal mr-2"></i> Console Output <span
+                        class="ml-2 text-[9px] opacity-50 tracking-wider hidden sm:inline">(DRAG BORDER TO
+                        RESIZE)</span></span>
+                <button id="runBtn"
+                    class="flex items-center gap-1.5 px-3 py-1 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-500 hover:text-emerald-400 rounded-md text-xs font-semibold mx-1 transition-all border border-emerald-600/30 hover:border-emerald-500/50 shadow-sm focus:outline-none active:scale-95">
+                    <i class="fa-solid fa-play"></i> Run Code
                 </button>
-
-                <!-- Code Content Wrapper -->
-                <div class="flex-1 overflow-auto bg-[#fafafa] dark:bg-[#0c0c0c] relative custom-scrollbar shadow-inner"
-                    id="codeWrapper">
-                    <pre
-                        class="line-numbers !bg-transparent !m-0 !p-4 sm:!p-6 h-full font-mono"><code id="codeBlock" class="language-cpp !font-mono text-xs sm:text-sm selection:bg-primary/30 block tracking-tight"></code></pre>
-                </div>
-
-                <!-- Simulated Compiler Terminal -->
-                <div id="terminalContainer"
-                    class="h-40 min-h-[4rem] max-h-[80vh] border-t border-gray-200 dark:border-[#2a2a2a] bg-[#0d1117] flex flex-col shrink-0 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] relative z-20">
-                    <div id="terminalResizer"
-                        class="absolute top-0 left-0 w-full h-[6px] cursor-ns-resize bg-transparent hover:bg-primary/50 transition-colors z-30 transform -translate-y-1/2">
-                    </div>
-                    <div
-                        class="flex items-center justify-between px-4 py-2 bg-[#161b22] border-b border-[#30363d] shrink-0">
-                        <span class="text-xs font-mono text-gray-400 flex items-center select-none"><i
-                                class="fa-solid fa-terminal mr-2"></i> Console Output <span
-                                class="ml-2 text-[9px] opacity-50 tracking-wider hidden sm:inline">(DRAG BORDER TO
-                                RESIZE)</span></span>
-                        <button id="runBtn"
-                            class="flex items-center gap-1.5 px-3 py-1 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-500 hover:text-emerald-400 rounded-md text-xs font-semibold mx-1 transition-all border border-emerald-600/30 hover:border-emerald-500/50 shadow-sm focus:outline-none active:scale-95">
-                            <i class="fa-solid fa-play"></i> Run Code
-                        </button>
-                    </div>
-                    <div class="p-3 mx-1 flex-1 overflow-y-auto font-mono text-xs leading-relaxed custom-scrollbar whitespace-pre-wrap"
-                        id="terminalOutput">
-                        <span class="text-gray-500">Ready to compile. Press <span class="text-emerald-400"><i
-                                    class="fa-solid fa-play"></i> Run</span> to test current program.</span>
-                    </div>
-                </div>
             </div>
+            <div class="p-3 mx-1 flex-1 overflow-y-auto font-mono text-xs leading-relaxed custom-scrollbar whitespace-pre-wrap"
+                id="terminalOutput">
+                <span class="text-gray-500">Ready to compile. Press <span class="text-emerald-400"><i
+                            class="fa-solid fa-play"></i> Run</span> to test current program.</span>
+            </div>
+        </div>
+    </div>
 
-        </section>
-    </main>
-
+</section>
+</main>
 <!-- END MODULE: editor_layout.html -->
 
 <!-- START MODULE: footer.html -->

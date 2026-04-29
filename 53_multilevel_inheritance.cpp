@@ -1,18 +1,10 @@
-// W.A.P. to demo multilevel inheritance
+// W.A.P. to demo Inheritance Chains
 /*
-Algorithm:
-        [ Class A ]  (Base)
-             |
-             v
-        [ Class B ]  (Intermediate Derived)
-             |
-             v
-        [ Class C ]  (Final Derived)
-
-Program Name: Multilevel Inheritance
-Description: Inheritance chain
-Concepts Used: Multilevel inheritance
+Program Name: Multilevel inheritance
+Description: A -> B -> C hierarchy. Grandparent, parent, child relationship scaling properties.
+Concepts Used: Inheritance Chains
 */
+
 #include <iostream>
 using namespace std;
 

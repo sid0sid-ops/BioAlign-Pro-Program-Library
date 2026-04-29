@@ -1,15 +1,10 @@
-// W.A.P. to take an integer input and display it
+// W.A.P. to demo Input Streams
 /*
-Algorithm:
-Step 1: Start
-Step 2: Take integer input
-Step 3: Print it
-Step 4: End
-
-Program Name: Int Input
-Description: Reads and prints an int
-Concepts Used: I/O
+Program Name: Take integer input & display
+Description: Using std::cin to read user input into a variable memory address.
+Concepts Used: Input Streams
 */
+
 #include <iostream>
 using namespace std;
 int main() {

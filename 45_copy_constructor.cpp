@@ -1,15 +1,10 @@
-// W.A.P. to demo Copy Constructors
+// W.A.P. to demo Memory Cloning
 /*
-Algorithm:
-Step 1: Start
-Step 2: Instantiate Parameterized Constructor (seq1)
-Step 3: Clone seq1 into seq2 using Copy Constructor
-Step 4: End
-
 Program Name: Copy Constructor
-Description: Passing class instances by reference safely.
-Concepts Used: Object instancing, references
+Description: Exploring explicit reference passing to bypass infinite instancing loops during copy routines.
+Concepts Used: Memory Cloning
 */
+
 #include <iostream>
 using namespace std;
 
@@ -37,6 +32,5 @@ int main() {
     cout << "\nCreating seq2 by cloning seq1... \n";
     Sequence seq2 = seq1;   // This explicitly invokes the Copy Constructor
     
-    cout << "\n--- BioAlign-Pro ---" << endl;
     return 0;
 }

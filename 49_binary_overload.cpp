@@ -1,52 +1,36 @@
-// W.A.P. to overload the + operator to add two complex numbers
+// W.A.P. to demo Binary Overloading
 /*
-Algorithm:
-Implement Complex class containing real and imaginary floats.
-Overload operator+ to return a new synthesized Complex object.
-Format the print function neatly as real + i(imaginary).
+Program Name: Binary + (Complex)
+Description: Overloading + to add two custom objects together (like Complex Numbers).
+Concepts Used: Binary Overloading
 */
 
 #include <iostream>
 using namespace std;
 
-class Complex {
+class DNA {
 private:
-    float real;
-    float imag;
-
+    string seq;
 public:
-    // Constructor 
-    Complex(float r = 0, float i = 0) : real(r), imag(i) {}
-
-    // Overloading the '+' operator
-    Complex operator+(const Complex& obj) {
-        Complex res;
-        res.real = real + obj.real;
-        res.imag = imag + obj.imag;
-        return res;
+    DNA(string s = "") { seq = s; }
+    
+    // Overload + to easily combine sequences
+    DNA operator+(DNA other) {
+        return DNA(seq + other.seq); 
     }
-
-    // Display formatted output
-    void display() const {
-        cout << real << " + i(" << imag << ")" << endl;
+    
+    void display() {
+        cout << "DNA: " << seq << endl;
     }
 };
 
 int main() {
-    Complex c1(3.5, 2.5);
-    Complex c2(1.5, 4.5);
+    DNA strand1("AT");
+    DNA strand2("GC");
     
-    Complex c3 = c1 + c2; // Using overloaded operator
+    // Straightforward addition
+    DNA combined = strand1 + strand2;
+    combined.display();
     
-    cout << "First Complex Number: ";
-    c1.display();
-    
-    cout << "Second Complex Number: ";
-    c2.display();
-    
-    cout << "Result of Addition: ";
-    c3.display();
-
-    cout << "\n--- BioAlign-Pro ---" << endl;
     return 0;
 }

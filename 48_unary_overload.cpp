@@ -1,28 +1,35 @@
-// W.A.P. to overload unary ++
+// W.A.P. to demo Operator Overloading
 /*
-Algorithm:
-Step 1: Start
-Step 2: void operator++()
-Step 3: Increment class member
-Step 4: End
-
-Program Name: Unary Overload
-Description: Overloading ++
-Concepts Used: Operator overloading
+Program Name: Unary ++ operator
+Description: Redefining base operators like ++ to work intimately with custom classes.
+Concepts Used: Operator Overloading
 */
+
 #include <iostream>
 using namespace std;
 
-class Cursor {
-    int pos = 1;
+class Generation {
+private:
+    int count;
 public:
-    void operator++() { pos++; }
-    void show() { cout << "Pos: " << pos << endl; }
+    Generation() { count = 0; }
+    
+    // Unary operator overload
+    void operator++() {
+        count++; // Increment generation directly
+    }
+    
+    void display() {
+        cout << "Generation: " << count << endl;
+    }
 };
 
 int main() {
-    Cursor c;
-    ++c;
-    c.show();
+    Generation gen;
+    gen.display();
+    
+    ++gen; // Using the overloaded ++ 
+    gen.display();
+    
     return 0;
 }

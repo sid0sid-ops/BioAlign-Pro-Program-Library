@@ -1,15 +1,10 @@
-// W.A.P. to pass array to function
+// W.A.P. to demo Array Decay
 /*
-Algorithm:
-Step 1: Start
-Step 2: Define func(int arr[], int size)
-Step 3: Print elements inside func
-Step 4: End
-
-Program Name: Pass Array Array
-Description: Pass arrays by reference to function
-Concepts Used: arrays, functions
+Program Name: Pass array to function
+Description: Passing arrays to functions (they decay to pointers to the first element).
+Concepts Used: Array Decay
 */
+
 #include <iostream>
 using namespace std;
 

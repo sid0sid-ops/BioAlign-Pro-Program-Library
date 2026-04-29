@@ -1,16 +1,10 @@
-// W.A.P. to distinguish Deep vs Shallow object copies
+// W.A.P. to demo Memory Architecture
 /*
-Algorithm:
-Step 1: Start
-Step 2: Create object requesting heap memory inside constructor
-Step 3: Implement Deep Copy constructor allocating entirely NEW memory
-Step 4: Clone object. Both objects now contain independent memory pointers!
-Step 5: End
-
 Program Name: Deep vs Shallow Copy
-Description: Safely utilizing heap memory inside objects
-Concepts Used: Deep copy, dynamic allocation, pointers, heap
+Description: Exploring the catastrophic consequences of shallow-copy pointer duplications and building explicit Deep Copy constructors using heap (new) allocation.
+Concepts Used: Memory Architecture
 */
+
 #include <iostream>
 using namespace std;
 

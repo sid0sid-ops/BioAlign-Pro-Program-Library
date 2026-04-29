@@ -1,9 +1,10 @@
-// W.A.P. to demo multiple inheritance
+// W.A.P. to demo Multiple Parent Classes
 /*
-Program Name: Multiple Inheritance
-Description: Multiple parent classes
-Concepts Used: Multiple inheritance
+Program Name: Multiple inheritance
+Description: A class extending two or more distinct parent classes (unique to C++).
+Concepts Used: Multiple Parent Classes
 */
+
 #include <iostream>
 using namespace std;
 

@@ -1,15 +1,10 @@
-// W.A.P. to calculate sum using function
+// W.A.P. to demo Function Basics
 /*
-Algorithm:
-Step 1: Start
-Step 2: Define function sum(a, b)
-Step 3: return a+b
-Step 4: End
-
-Program Name: Function Sum
-Description: Abstract addition inside function
-Concepts Used: user defined functions
+Program Name: Sum using function
+Description: Encapsulating code into reusable blocks that accept parameters and return values.
+Concepts Used: Function Basics
 */
+
 #include <iostream>
 using namespace std;
 

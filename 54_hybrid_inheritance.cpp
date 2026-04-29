@@ -1,8 +1,8 @@
-// W.A.P. to demonstrate hybrid inheritance preventing diamond ambiguity
+// W.A.P. to demo C++ Standard Operation
 /*
-Algorithm:
-Showcase a class diamond issue -> Base -> (Intermediate A & B) -> Final.
-We utilize virtual inheritance over Intermediate levels to merge the dual-copies of the Base class logically!
+Program Name: 54 Hybrid Inheritance
+Description: A standard bio-informatics logic sample.
+Concepts Used: C++ Standard Operation
 */
 
 #include <iostream>
@@ -47,6 +47,5 @@ int main() {
     machine.print();
     machine.copy();
     
-    cout << "\n--- BioAlign-Pro ---" << endl;
     return 0;
 }

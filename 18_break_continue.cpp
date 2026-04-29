@@ -1,14 +1,10 @@
-// W.A.P. to demo break and continue
+// W.A.P. to demo Loop Control
 /*
-Algorithm:
-Step 1: Start
-Step 2: Loop 1..10. If 4, continue. If 8, break.
-Step 3: End
-
-Program Name: Break Continue Demo
-Description: Demos loop control
-Concepts Used: break, continue
+Program Name: Break and continue
+Description: Altering normal loop execution flow by skipping or breaking out.
+Concepts Used: Loop Control
 */
+
 #include <iostream>
 using namespace std;
 int main() {

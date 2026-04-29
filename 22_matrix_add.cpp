@@ -1,15 +1,10 @@
-// W.A.P. to add two 2D matrices
+// W.A.P. to demo 2D Arrays
 /*
-Algorithm:
-Step 1: Start
-Step 2: Create two 2x2 arrays
-Step 3: Loop rows & cols: sum[i][j] = a[i][j] + b[i][j]
-Step 4: End
-
-Program Name: Matrix Addition
-Description: Adds 2D arrays elementwise
-Concepts Used: 2D arrays, nested loops
+Program Name: Add two 2D matrices
+Description: Using nested loops to iterate over rows and columns of 2D data structures.
+Concepts Used: 2D Arrays
 */
+
 #include <iostream>
 using namespace std;
 int main() {

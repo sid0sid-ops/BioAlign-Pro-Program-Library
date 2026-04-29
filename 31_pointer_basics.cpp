@@ -1,15 +1,10 @@
-// W.A.P. to demo pointer basics
+// W.A.P. to demo Memory Addresses
 /*
-Algorithm:
-Step 1: Start
-Step 2: Declare var and ptr=&var
-Step 3: Print address & ptr, value *ptr
-Step 4: End
-
-Program Name: Pointer Basics
-Description: Intro to memory pointers
-Concepts Used: pointers, dereference
+Program Name: Pointer basics
+Description: Introduction to pointers (*), dereferencing, and the address-of operator (&).
+Concepts Used: Memory Addresses
 */
+
 #include <iostream>
 using namespace std;
 

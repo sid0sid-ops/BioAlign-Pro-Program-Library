@@ -1,16 +1,10 @@
-// W.A.P. to check Armstrong number
+// W.A.P. to demo Digit Extraction
 /*
-Algorithm:
-Step 1: Start
-Step 2: Input n. Store copy.
-Step 3: Sum cubes of each digit.
-Step 4: If sum == copy, it's Armstrong.
-Step 5: End
-
-Program Name: Armstrong Number
-Description: Checks if sum of cubes of digits equals number
-Concepts Used: arithmetic operators, while loop
+Program Name: Armstrong number
+Description: Using modulo 10 and division to process a number digit-by-digit.
+Concepts Used: Digit Extraction
 */
+
 #include <iostream>
 using namespace std;
 int main() {

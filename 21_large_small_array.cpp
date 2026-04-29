@@ -1,15 +1,10 @@
-// W.A.P. to find largest & smallest in array
+// W.A.P. to demo Linear Search
 /*
-Algorithm:
-Step 1: Start
-Step 2: Assume max = min = arr[0]
-Step 3: Iterate array, updating max/min
-Step 4: End
-
-Program Name: Array Min Max
-Description: Finds extremes in array
-Concepts Used: arrays, conditionals
+Program Name: Largest/smallest in array
+Description: Scanning an array to track and update the maximum and minimum values seen.
+Concepts Used: Linear Search
 */
+
 #include <iostream>
 using namespace std;
 int main() {

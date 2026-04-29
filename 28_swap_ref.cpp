@@ -1,17 +1,10 @@
-// W.A.P. to swap values using Call by Reference (Pointers)
+// W.A.P. to demo Pass by Reference
 /*
-Algorithm:
-Step 1: Start
-Step 2: Initialize a=10, b=20
-Step 3: Pass addresses (&a, &b) to ChangeVal()
-Step 4: Inside ChangeVal, dereference pointers and swap
-Step 5: Original values are permanently modified. End
-
-Program Name: Swap - Call by Reference (Pointers)
-Description: Passes address of variables to a function so it can
-             permanently modify them using pointer dereferencing.
-Concepts Used: pointers, call by reference, dereferencing
+Program Name: Swap (Call by Reference)
+Description: Passing memory addresses (&) so functions can modify original variables.
+Concepts Used: Pass by Reference
 */
+
 #include <iostream>
 using namespace std;
 

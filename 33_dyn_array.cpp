@@ -1,25 +1,30 @@
-// W.A.P. to use dynamic array (new/delete)
+// W.A.P. to demo Heap Allocation
 /*
-Algorithm:
-Step 1: Start
-Step 2: ptr = new int[size]
-Step 3: store and print
-Step 4: delete[] ptr
-Step 5: End
-
-Program Name: Dynamic memory
-Description: Runtime memory alloc
-Concepts Used: new, delete, dynamic memory
+Program Name: Dynamic array
+Description: Using `new` and `delete` to manually allocate arrays at runtime based on dynamic sizes.
+Concepts Used: Heap Allocation
 */
+
 #include <iostream>
 using namespace std;
 
 int main() {
-    int n, *arr;
-    cout << "Enter size: "; cin >> n;
-    arr = new int[n];
-    for(int i=0; i<n; i++) arr[i] = i+1;
-    for(int i=0; i<n; i++) cout << arr[i] << " ";
-    delete[] arr;
+    int length = 5; 
+    
+    // Allocate memory dynamically
+    char* dna = new char[length];
+    
+    for(int i = 0; i < length; i++) {
+        dna[i] = 'A'; // Fill with Adenine
+    }
+    
+    cout << "Sequence: ";
+    for(int i = 0; i < length; i++) {
+        cout << dna[i];
+    }
+    cout << endl;
+    
+    delete[] dna; // Always free memory!
+    
     return 0;
 }

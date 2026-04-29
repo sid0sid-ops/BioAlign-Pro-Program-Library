@@ -1,15 +1,10 @@
-// W.A.P. to take array input and output
+// W.A.P. to demo 1D Arrays
 /*
-Algorithm:
-Step 1: Start
-Step 2: Loop 0 to 4, cin array[i]
-Step 3: Loop 0 to 4, cout array[i]
-Step 4: End
-
-Program Name: Array I/O
-Description: Store 5 values and print
-Concepts Used: arrays, loops
+Program Name: Array input/output
+Description: Storing multiple contiguous values in memory and looping through them.
+Concepts Used: 1D Arrays
 */
+
 #include <iostream>
 using namespace std;
 int main() {

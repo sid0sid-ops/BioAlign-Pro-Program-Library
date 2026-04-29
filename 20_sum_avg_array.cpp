@@ -1,16 +1,10 @@
-// W.A.P. to find sum and average of array elements
+// W.A.P. to demo Accumulators
 /*
-Algorithm:
-Step 1: Start
-Step 2: Read n elements
-Step 3: Add to sum. Avg = sum / n.
-Step 4: Print results
-Step 5: End
-
-Program Name: Array Sum Average
-Description: Stats on arrays
-Concepts Used: arrays, arithmetic loops
+Program Name: Sum and average of array
+Description: Iterating through an array to build a running total and calculating the mean.
+Concepts Used: Accumulators
 */
+
 #include <iostream>
 using namespace std;
 int main() {

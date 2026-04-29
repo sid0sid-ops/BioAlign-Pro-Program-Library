@@ -1,32 +1,26 @@
-// W.A.P. to demonstrate function overloading using ints and floats
+// W.A.P. to demo Polymorphism (Compile-time)
 /*
-Algorithm:
-Create two forms of the 'add' function.
-One matching integer arguments.
-One matching floating-point arguments.
-Display the resulting sum inside main for both cases safely.
+Program Name: Function overloading
+Description: Creating multiple functions with the same name but different argument signatures.
+Concepts Used: Polymorphism (Compile-time)
 */
 
 #include <iostream>
 using namespace std;
 
-// Function to add two integers
-int add(int a, int b) {
-    return a + b;
+// Add single base
+void addDNA(char base) {
+    cout << "Added base: " << base << endl;
 }
 
-// Function to add two floating-point numbers
-float add(float a, float b) {
-    return a + b;
+// Add full sequence
+void addDNA(string seq) {
+    cout << "Added sequence: " << seq << endl;
 }
 
 int main() {
-    int intSum = add(10, 20);
-    float floatSum = add(5.5f, 3.2f);
+    addDNA('A');
+    addDNA("ATGC");
     
-    cout << "Integer Addition Results: " << intSum << endl;
-    cout << "Floating-Point Addition Results: " << floatSum << endl;
-    
-    cout << "\n--- BioAlign-Pro ---" << endl;
     return 0;
 }

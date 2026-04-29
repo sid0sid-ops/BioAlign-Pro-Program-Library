@@ -1,9 +1,8 @@
-// W.A.P. to create a file, write student details to it, and read them securely.
+// W.A.P. to demo File Streams
 /*
-Algorithm:
-Open an ofstream connection to 'student.txt'.
-Print data to the file, then securely close it.
-Open an ifstream connection to the file and execute a clean read cycle into newly bound variables.
+Program Name: File Handling (Read/Write)
+Description: Demonstrates how to create a file, write a string to it, and read the content back into the program.
+Concepts Used: File Streams
 */
 
 #include <iostream>
@@ -52,6 +51,5 @@ int main() {
     cout << "Roll Number: " << readRoll << endl;
     cout << "Marks: " << readMarks << endl;
 
-    cout << "\n--- BioAlign-Pro ---" << endl;
     return 0;
 }

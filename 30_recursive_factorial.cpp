@@ -1,15 +1,10 @@
-// W.A.P. to find recursive factorial
+// W.A.P. to demo Recursive Math
 /*
-Algorithm:
-Step 1: Start
-Step 2: Base fact(1)=1
-Step 3: fact(n) = n * fact(n-1)
-Step 4: End
-
-Program Name: Recursive Factorial
-Description: Factorial using recursion
-Concepts Used: recursion
+Program Name: Recursive factorial
+Description: Classic algorithmic recursion calculating n! by breaking down to n * (n-1)!
+Concepts Used: Recursive Math
 */
+
 #include <iostream>
 using namespace std;
 

@@ -1,15 +1,10 @@
-// W.A.P. to demo access specifiers
+// W.A.P. to demo Public/Private/Protected
 /*
-Algorithm:
-Step 1: Start
-Step 2: public, private, protected vars
-Step 3: demonstrate access from main (public works, other fail without getters)
-Step 4: End
-
-Program Name: Access Speciifers
-Description: Pub / Priv / Prot
-Concepts Used: data hiding
+Program Name: Access specifiers
+Description: Demonstrating the strict boundaries of class member visibility.
+Concepts Used: Public/Private/Protected
 */
+
 #include <iostream>
 using namespace std;
 

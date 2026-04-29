@@ -1,15 +1,10 @@
-// W.A.P. to demonstrate Call by Value using a Class
+// W.A.P. to demo Pass by Value
 /*
-Algorithm:
-Step 1: Start
-Step 2: Get values of a and b using getdata()
-Step 3: Call Swap_FunctionCalling() which swaps private members
-Step 4: Display swapped values. End
-
-Program Name: Swap - Call by Value (Class)
-Description: A class encapsulates two integers and swaps them internally.
-Concepts Used: class, private members, call by value (object scope)
+Program Name: Swap (Call by Value)
+Description: Demonstrating that passing standard arguments creates copies, making local swaps fail globally.
+Concepts Used: Pass by Value
 */
+
 #include <iostream>
 using namespace std;
 

@@ -1,58 +1,74 @@
-// W.A.P. for C-Style and C++ String Handling
+// W.A.P. to String Manipulation
 /*
-Algorithm:
-Step 1: Start
-Step 2: Input first and last name as C-style char arrays
-Step 3: Demonstrate strlen, strcpy, strcat, strcmp
-Step 4: Demonstrate C++ string objects, concatenation, length
-Step 5: End
-
-Program Name: String Handling (C-style + C++)
-Description: Covers C-style char arrays and C++ string objects.
-             Demonstrates strlen, strcpy, strcat, strcmp, and
-             std::string operations.
-Concepts Used: cstring, string class, concatenation
+Program Name: String Operations
+Description: Demonstrates various string operations including C-style strings (strcpy, strcat, strlen, strcmp) and C++ std::string.
+Concepts Used: C-Style Strings, C++ Strings, Input/Output Streams
 */
+
 #include <iostream>
-#include <cstring>
-#include <string>
+#include <cstring> // Required for C-style string functions like strcpy, strcat, etc.
+#include <string>  // Required for C++ std::string class
+
 using namespace std;
 
 int main() {
-    // --- C-Style Strings ---
+    // ==========================================
+    // Part 1: C-Style String Manipulation
+    // ==========================================
+    cout << "--- C-Style String Manipulation ---" << endl;
+
     char F_name[20];
     char L_name[20];
     char Full_name[50];
 
-    cout << "Enter your first name: ";
-    cin >> F_name;
-    cout << "Enter your last name: ";
-    cin >> L_name;
+    cout << "Enter the first name: ";
+    cin.getline(F_name, 20);
 
-    cout << "\nThe full name is: " << F_name << " " << L_name << endl;
-    cout << "Length of first name : " << strlen(F_name) << endl;
-    cout << "Length of last name  : " << strlen(L_name) << endl;
+    cout << "Enter the last name: ";
+    cin.getline(L_name, 20);
 
-    // Copy and concatenate
+    cout << "The Full name is-: " << F_name << " " << L_name << endl;
+
+    // String length 
+    cout << "The length of First name: " << strlen(F_name) << endl;
+    cout << "The length of last name: " << strlen(L_name) << endl;
+
+    // Copy string 
     strcpy(Full_name, F_name);
-    strcat(Full_name, " ");
+    cout << "After Copy we get: " << Full_name << endl;
+
+    // Concatenate string 
+    strcat(Full_name, " "); // Adding a space to separate the names cleanly
     strcat(Full_name, L_name);
-    cout << "After copy & concat  : " << Full_name << endl;
+    cout << "After concatenation we get: " << Full_name << endl;
 
-    // Compare
-    if (strcmp(F_name, L_name) == 0)
-        cout << "First and last names are identical." << endl;
-    else
-        cout << "First and last names are different." << endl;
+    // String compare
+    if (strcmp(F_name, L_name) == 0) {
+        cout << "The strings are same" << endl;
+    } else {
+        cout << "The strings are different" << endl;
+    }
 
-    // --- C++ Strings ---
-    cout << "\n--- C++ String Examples ---" << endl;
+    // ==========================================
+    // Part 2: C++ String Class 
+    // ==========================================
+    cout << "\n--- C++ String Class ---" << endl;
+    
+    // C++ string declarations (showing different initialization styles)
     string str1 = "hello";
-    string str2("world");
-    string str3;
-    str3 = str1 + " " + str2;
-    cout << "After concatenation  : " << str3 << endl;
-    cout << "Length of result     : " << str3.length() << endl;
+    string str2("hello");
+    string str3{"World"};
+    string str4;
+    string str5;
+
+    // Concatenation using C++ strings
+    str4 = str2 + " " + str3;
+    cout << "After concatenation length is: " << str4.length() << endl;
+    cout << "Concatenated string is: " << str4 << endl;
+
+    // Copying C++ strings
+    str5 = str4; 
+    cout << "After copying -: " << str5 << endl;
 
     return 0;
 }

@@ -1,15 +1,10 @@
-// W.A.P. to calc factorial using class
+// W.A.P. to demo Encapsulated Logic
 /*
-Algorithm:
-Step 1: Start
-Step 2: Class Fact with calculate()
-Step 3: Run loop inside method
-Step 4: End
-
-Program Name: Factorial OOP
-Description: Math via object
-Concepts Used: OOP member methods
+Program Name: Factorial class
+Description: Wrapping procedural logic (factorial algorithm) securely inside an object-oriented shell.
+Concepts Used: Encapsulated Logic
 */
+
 #include <iostream>
 using namespace std;
 

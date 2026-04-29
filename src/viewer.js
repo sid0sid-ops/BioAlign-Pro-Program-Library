@@ -4,6 +4,8 @@ window.App.Viewer = {
         window.currentActiveHash = hash;
 
         window.App.UI.initSidebar(document.getElementById('searchInput').value);
+        // Scroll the active sidebar link into view (keyboard nav, button clicks)
+        setTimeout(() => window.App.UI.scrollActiveSidebarItem(), 50);
 
         const fileId = hash.substring(1);
         const currentIndex = window.App.Data.cppFiles.findIndex(f => f.id === fileId);
@@ -120,14 +122,13 @@ window.App.Viewer = {
 
         const btn = document.getElementById('copyBtn');
         if (!btn) return;
-        const originalHtml = btn.innerHTML;
 
         btn.classList.add('bg-emerald-500/20', 'border-emerald-500/50', 'text-emerald-600', 'dark:text-emerald-400', 'scale-95');
-        btn.innerHTML = `<i class="fa-solid fa-check sm:mr-2"></i> <span class="hidden sm:inline">Copied ✓</span>`;
+        btn.innerHTML = `<i class="fa-solid fa-check sm:mr-0 group-hover:scale-100"></i> <span class="hidden sm:inline ml-2">Copied ✓</span>`;
 
         setTimeout(() => {
             btn.classList.remove('bg-emerald-500/20', 'border-emerald-500/50', 'text-emerald-600', 'dark:text-emerald-400', 'scale-95');
-            btn.innerHTML = originalHtml;
+            btn.innerHTML = `<i class="fa-regular fa-copy group-hover:scale-110 transition-transform duration-200"></i> <span class="hidden sm:inline ml-2">Copy Code</span>`;
         }, 1500);
     },
 

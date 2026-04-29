@@ -1,16 +1,10 @@
-// W.A.P. to count objects using static
+// W.A.P. to demo Static Members
 /*
-Algorithm:
-Step 1: Start
-Step 2: static int count.
-Step 3: ++count in constructor.
-Step 4: static func to return count.
-Step 5: End
-
-Program Name: Static Member
-Description: Class scoped variables
-Concepts Used: static members
+Program Name: Static object counter
+Description: Using variables that belong to the Class itself, shared across all instantiated objects.
+Concepts Used: Static Members
 */
+
 #include <iostream>
 using namespace std;
 

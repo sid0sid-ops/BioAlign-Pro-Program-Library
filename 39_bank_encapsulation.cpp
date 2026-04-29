@@ -1,15 +1,10 @@
-// W.A.P. to demo Encapsulation (BankAccount)
+// W.A.P. to demo Data Hiding
 /*
-Algorithm:
-Step 1: Start
-Step 2: private balance. public dep/with.
-Step 3: Access balance only via functions
-Step 4: End
-
-Program Name: Encapsulation
-Description: Info hiding
-Concepts Used: private variables
+Program Name: Bank (Encapsulation)
+Description: Using private modifiers to protect sensitive data, accessed only via public getter/setter methods.
+Concepts Used: Data Hiding
 */
+
 #include <iostream>
 using namespace std;
 

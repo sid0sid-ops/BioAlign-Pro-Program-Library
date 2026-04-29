@@ -1,15 +1,10 @@
-// W.A.P. to use getData and display inside class
+// W.A.P. to demo Methods
 /*
-Algorithm:
-Step 1: Start
-Step 2: Class with getData() to cin, display() to cout
-Step 3: Call via Object
-Step 4: End
-
-Program Name: Member Functions
-Description: Class functions
-Concepts Used: Member functions
+Program Name: getData() and display()
+Description: Adding member functions to a class to intake and output object state.
+Concepts Used: Methods
 */
+
 #include <iostream>
 using namespace std;
 

@@ -1,15 +1,10 @@
-// W.A.P. to reverse a string
+// W.A.P. to demo String Manipulation
 /*
-Algorithm:
-Step 1: Start
-Step 2: Get string
-Step 3: Loop backwards from len-1 to 0, print char
-Step 4: End
-
-Program Name: Reverse String
-Description: Reverses order of chars
-Concepts Used: strings, loops
+Program Name: Reverse a string
+Description: Iterating backwards over a string or swapping characters in-place.
+Concepts Used: String Manipulation
 */
+
 #include <iostream>
 #include <string>
 using namespace std;
