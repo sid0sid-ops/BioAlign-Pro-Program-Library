@@ -81,7 +81,7 @@ import json
 dict_str = "    exactOutputs: " + json.dumps(master_map, indent=8)
 
 # Replace the block entirely
-c = re.sub(r'    exactOutputs:\s*\{[\s\S]*?\}(?=,?\s*resetTerminal:)', dict_str, c)
+c = re.sub(r'    exactOutputs:\s*\{[\s\S]*?\}(?=,?\s*resetTerminal:)', lambda m: dict_str, c)
 
 with open(sim_path, 'w', encoding='utf-8') as f:
     f.write(c)
