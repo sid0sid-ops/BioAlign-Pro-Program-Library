@@ -63,11 +63,13 @@ master_map = {
     '52_multiple_inheritance.cpp': 'DNA: Storing genetic sequence.\nHistone: Providing structural support.\nChromosome: Replicating during S-phase.',
     '53_multilevel_inheritance.cpp': 'A\nB\nC\n',
     '54_hybrid_inheritance.cpp': 'Device constructor executed.\nDevice powers on successfully.\nScanning document...\nPrinting document...\nDuplicating utilizing scanning and printing flows...',
-    '55_runtime_poly.cpp': 'Derived class function\n',
-    '56_exception_handling.cpp': 'Exception Caught: Error: Division by zero is undefined.\n',
-    '57_file_handling.cpp': 'Student details successfully written to student_record.txt\n\n--- Student Record Output ---\nName: Siddharth\nRoll Number: 42\nMarks: 95.5',
-    '58_deep_shallow_copy.cpp': 'Instantiating Primary Buffer:\nConstructor executed: Memory allocated at 0x22f28a0 (Val: 42)\n\nCloning to Secondary Buffer:\nDeep Copy executed: NEW memory allocated at 0x22fa010 (Val: 42)\n\nTerminating application bounds:',
-    '59_templates.cpp': 'Executing Template with Integers: \nResult: 45\n\nExecuting EXACT SAME Template with Floats (Decimals): \nResult: 16.7',
+    '55_hierarchical_inheritance.cpp': 'Cell is dividing.\nMaking food via sunlight.\nCell is dividing.\nAnimal cell moving.',
+    '56_runtime_poly.cpp': 'Red Blood Cell',
+    '57_virtual_function.cpp': 'Bark!',
+    '58_exception_handling.cpp': 'Error: Division by zero!',
+    '59_file_handling.cpp': 'Student details successfully written to student_record.txt\n\n--- Student Record Output ---\nName: Siddharth\nRoll Number: 42\nMarks: 95.5',
+    '60_deep_shallow_copy.cpp': 'Instantiating Primary Buffer:\nConstructor executed: Memory allocated at 0x22f28a0 (Val: 42)\n\nCloning to Secondary Buffer:\nDeep Copy executed: NEW memory allocated at 0x22fa010 (Val: 42)\n\nTerminating application bounds:',
+    '61_templates.cpp': 'Executing Template with Integers: \nResult: 45\n\nExecuting EXACT SAME Template with Floats (Decimals): \nResult: 16.7',
 }
 
 # Attach watermarks exactly globally
