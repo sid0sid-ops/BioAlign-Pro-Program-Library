@@ -101,7 +101,7 @@ window.App.UI = {
             files.forEach(file => {
                 const link = document.createElement('a');
                 link.href = `#${file.id}`;
-                link.className = `flex items-center px-4 py-2 ml-2 text-sm rounded-md transition-all truncate-fluid relative group ${window.currentActiveHash === `#${file.id}` ? 'bg-primary/10 text-primary font-medium border-l-[3px] border-primary' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5 border-l-[3px] border-transparent hover:border-gray-200 dark:hover:border-[#333333]'
+                link.className = `flex items-center px-4 py-2 ml-2 text-sm rounded-md transition-all relative group ${window.currentActiveHash === `#${file.id}` ? 'bg-primary/10 text-primary font-medium border-l-[3px] border-primary' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5 border-l-[3px] border-transparent hover:border-gray-200 dark:hover:border-[#333333]'
                     }`;
 
                 let displayTitle = file.title;
@@ -113,7 +113,7 @@ window.App.UI = {
 
                 link.innerHTML = `
                     <svg viewBox="0 0 128 128" width="1em" height="1em" class="w-[14px] h-[14px] mr-2 opacity-50 group-hover:opacity-100 group-hover:text-primary fill-current shrink-0 transition-colors"><path d="M118.5,28L71,1.5c-4.3-2.4-9.7-2.4-14,0L9.5,28C5.2,30.4,2.5,35.1,2.5,40v55.5c0,4.9,2.7,9.6,7,12l47.5,26.5c4.3,2.4,9.7,2.4,14,0l47.5-26.5c4.3-2.4,7-7.1,7-12V40C125.5,35.1,122.8,30.4,118.5,28z M62,81.4c-9,0-15-7-15-17.4s6-17.4,15-17.4c6.2,0,10.6,3.6,13.2,9l-8.5,5c-1.3-3.6-2.9-5-5-5c-4,0-6,3.6-6,9s2,9,6,9c2.5,0,4.2-1.7,5.3-5l8.6,4.6C73,78,68.9,81.4,62,81.4z M90,70.5h-5.9v6.5H76v-6.5h-5.9v-8.1H76v-6.5h8.1v6.5H90V70.5z M107.5,70.5h-5.9v6.5H93.5v-6.5h-5.9v-8.1h5.9v-6.5h8.1v6.5h5.9V70.5z"></path></svg>
-                    <span class="truncate-fluid">${displayTitle}</span>
+                    <span class="whitespace-normal break-words leading-tight text-left">${displayTitle}</span>
                 `;
 
                 link.onclick = (e) => {

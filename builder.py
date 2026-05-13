@@ -21,7 +21,7 @@ prism_part = ""
 if os.path.exists(script_path):
     with open(script_path, "r", encoding="utf-8") as f:
         orig = f.read()
-    match = re.search(r'(/\* --- PRISM\.JS CORE.*?INLINED --- \*/.*?)(?=\s*window\.App\s*=|/\*\*|const cppFiles|let currentActiveHash)', orig, re.DOTALL)
+    match = re.search(r'(/\* --- PRISM\.JS CORE.*?INLINED --- \*/.*?)(?=\s*window\.__CPP_CONTENTS__\s*=|\s*window\.App\s*=|/\*\*|const cppFiles|let currentActiveHash)', orig, re.DOTALL)
     if match:
         prism_part = match.group(1).strip() + "\n\n"
     else:

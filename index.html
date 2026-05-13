@@ -258,11 +258,11 @@
 
         <!-- Simulated Compiler Terminal -->
         <div id="terminalContainer"
-            class="h-40 min-h-[4rem] max-h-[80vh] border-t border-gray-200 dark:border-[#2a2a2a] bg-[#0d1117] flex flex-col shrink-0 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] relative z-20">
+            class="h-40 min-h-[4rem] max-h-[80vh] border-t border-gray-200 dark:border-[#2a2a2a] bg-white dark:bg-[#0d1117] flex flex-col shrink-0 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] relative z-20">
             <div id="terminalResizer"
                 class="absolute top-0 left-0 w-full h-[6px] cursor-ns-resize bg-transparent hover:bg-primary/50 transition-colors z-30 transform -translate-y-1/2">
             </div>
-            <div class="flex items-center justify-between px-4 py-2 bg-[#161b22] border-b border-[#30363d] shrink-0">
+            <div class="flex items-center justify-between px-4 py-2 bg-gray-100 dark:bg-[#161b22] border-b border-gray-200 dark:border-[#30363d] shrink-0">
                 <span class="text-xs font-mono text-gray-400 flex items-center select-none"><i
                         class="fa-solid fa-terminal mr-2"></i> Console Output <span
                         class="ml-2 text-[9px] opacity-50 tracking-wider hidden sm:inline">(DRAG BORDER TO
@@ -274,7 +274,7 @@
             </div>
             <div class="p-3 mx-1 flex-1 overflow-y-auto font-mono text-xs leading-relaxed custom-scrollbar whitespace-pre-wrap"
                 id="terminalOutput">
-                <span class="text-gray-500">Ready to compile. Press <span class="text-emerald-400"><i
+                <span class="text-gray-600 dark:text-gray-500">Ready to compile. Press <span class="text-emerald-600 dark:text-emerald-400"><i
                             class="fa-solid fa-play"></i> Run</span> to test current program.</span>
             </div>
         </div>
